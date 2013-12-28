@@ -3,7 +3,7 @@ triangle-menu [![Build Status](https://travis-ci.org/andrusieczko/triangle-menu.
 
 This is a jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path.
 
-[Examples](http://andrusieczko.github.io/triangle-menu/examples.html)
+[Examples](http://andrusieczko.github.io/triangle-menu)
 
 <img src="http://www.andrusieczko.pl/others/files_to_share/triangleMenu2.png" width="300">
 <img src="http://www.andrusieczko.pl/others/files_to_share/triangleMenu.png" width="300">
@@ -41,27 +41,28 @@ Remember about dependencies ([http://jquery.com/download](jQuery) and [clip-path
 Compilation
 -------
 
-If you want to compile the whole package and run unit tests, type `npm install` and `grunt test` or `npm test`.
+If you want to compile the whole package and run unit tests, type `npm install` and `grunt`.
 
 Usage
 -------
 Definition:
 `triangleMenu(options)` where options are not required.
 
-You have to have a certain HTML structure to use it. The element you call the function on has to have `.triangle-menu` class while all the item in the menu has to have `.menu-item` class.
+You have to have a certain HTML structure to use it. All the items in the menu have to have `.menu-item` class.
 
 ### Options
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
 | `triangleHeight` | number | 20 | Height of the clipped triangle in px |
-| `triangleWidth` | number | 25 | Half of width of the clipped triangle in px |
+| `triangleWidth` | number | 25 | Width of the clipped triangle in px |
+| `menuItemSelector` | string | .menu-item | Selector of the submenu item |
 | `activate(event, index)` | function | *nothing* | The callback function that is called when the mouse hovers over a `.menu-item` element; `index` argument is the index of `.menu-item` element and it's numerated from 1 |
 
 ---
 
 ## Example use:
-You can find the working examples [here](http://andrusieczko.github.io/triangle-menu/examples.html).
+You can find the working examples [here](http://andrusieczko.github.io/triangle-menu).
 ```html
 <table class="triangle-menu">
     <tbody>
@@ -92,10 +93,10 @@ you can add some css to see the effects:
 
 With [Bootstrap2](http://getbootstrap.com/2.3.2/):
 ```html
-<div class="row-fluid menu-triangle">
-    <div class="row4 menu-item">1</div>
-    <div class="row4 menu-item">2</div>
-    <div class="row4 menu-item">3</div>
+<div class="row-fluid triangle-menu">
+    <div class="row4 my-menu-item">1</div>
+    <div class="row4 my-menu-item">2</div>
+    <div class="row4 my-menu-item">3</div>
 </div>
 ```
 
@@ -104,6 +105,7 @@ Using options:
 $('.triangle-menu').triangleMenu({
   triangleWidth: 10,
   triangleheight: 5,
+  menuItemSelector: '.my-menu-item',
   activate: function(event, index) {
     console.log("You hovered over ", index, " element");
   }

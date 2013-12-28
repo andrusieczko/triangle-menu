@@ -15,7 +15,7 @@ var jQuery = jQuery || (require && require('jquery'));
     this.$el = $el;
     this.$ = jQuery;
 
-    this._processOptions(options);
+    this._processOptions($el, options);
   };
 
   if (typeof exports !== 'undefined') {
@@ -32,32 +32,32 @@ var jQuery = jQuery || (require && require('jquery'));
     $: null,
     $el: null,
 
-    triangleMenuSelector: '.triangle-menu',
     menuItemSelector: '.menu-item',
 
-    triangleWidth: 25,
+    triangleWidth: 50,
     triangleHeight: 20,
 
     selectItem: function(index) {
-      var points = this._createPolygonPoints(index);
-      this.$el.clipPath(points);
+      var $menu = this.$el;
+      var points = this._createPolygonPoints($menu, index);
+      $menu.clipPath(points);
 
-      this._colorIcons(this._getMenuItem(index));
-      this.$el.trigger('activate', index);
+      this._colorIcons($menu, this._getMenuItem($menu, index));
+      $menu.trigger('activate', index);
     },
 
-    _getMenuItem: function(index) {
-      return this.$el.find(this.menuItemSelector + ':nth-child(' + index + ')');
+    _getMenuItem: function($menu, index) {
+      return $menu.find(this.menuItemSelector + ':nth-child(' + index + ')');
     },
 
-    _createPolygonPoints: function(index) {
-      var menuWidth = this.$el.width();
-      var menuHeight = this.$el.height();
-      var $menuItem = this._getMenuItem(index);
-      var center = this._getCenterOfMenuItem($menuItem);
+    _createPolygonPoints: function($menu, index) {
+      var menuWidth = $menu.width();
+      var menuHeight = $menu.height();
+      var $menuItem = this._getMenuItem($menu, index);
+      var center = this._getCenterOfMenuItem($menu, $menuItem);
 
-      var left = center - this.triangleWidth;
-      var right = center + this.triangleWidth;
+      var left = center - (this.triangleWidth / 2);
+      var right = center + (this.triangleWidth / 2);
 
       return this._buildPolygonPoints(center, left, right, menuWidth, menuHeight);
     },
@@ -75,17 +75,16 @@ var jQuery = jQuery || (require && require('jquery'));
       return points;
     },
 
-    _getCenterOfMenuItem: function($menuItem) {
+    _getCenterOfMenuItem: function($menu, $menuItem) {
       var paddingLeft = parseInt($menuItem.css('padding-left'), 10);
 
-      var offset = $menuItem.offset().left - this.$el.offset().left + paddingLeft;
+      var offset = $menuItem.offset().left - $menu.offset().left + paddingLeft;
       var menuItemWidth = $menuItem.width();
       var center = offset + menuItemWidth / 2;
       return center;
     },
 
-    _colorIcons: function($menuItem) {
-      var $menu = $menuItem.parents(this.triangleMenuSelector);
+    _colorIcons: function($menu, $menuItem) {
       $menu.find(this.menuItemSelector).removeClass('active');
       $menuItem.addClass('active');
     },
@@ -103,9 +102,10 @@ var jQuery = jQuery || (require && require('jquery'));
       return typeof obj === 'function';
     },
 
-    _processOptions: function(options) {
+    _processOptions: function($menu, options) {
       this.triangleHeight = (options && options.triangleHeight) || this.triangleHeight;
       this.triangleWidth = (options && options.triangleWidth) || this.triangleWidth;
+      this.menuItemSelector = (options && options.menuItemSelector) || this.menuItemSelector;
 
       if (options && options.activate) {
 
@@ -113,7 +113,7 @@ var jQuery = jQuery || (require && require('jquery'));
           throw new Error("activate argument should be a function");
         }
 
-        this.$el.on('activate', options.activate.bind(this));
+        $menu.on('activate', options.activate.bind(this));
       }
     }
 

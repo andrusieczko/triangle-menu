@@ -63,9 +63,9 @@ describe('TriangleMenu', function() {
     cut.selectItem(index);
 
     // expect
-    expect(createPolygonPointsSpy.withArgs(index).calledOnce).to.be.equal(true);
-    expect(cut._colorIcons.withArgs(menuItem).calledOnce).to.be.equal(true);
-    expect(getMenuItemSpy.withArgs(index).calledOnce).to.be.equal(true);
+    expect(createPolygonPointsSpy.withArgs($el, index).calledOnce).to.be.equal(true);
+    expect(cut._colorIcons.withArgs($el, menuItem).calledOnce).to.be.equal(true);
+    expect(getMenuItemSpy.withArgs($el, index).calledOnce).to.be.equal(true);
     expect($el.clipPath.withArgs(points).calledOnce).to.be.equal(true);
     expect($el.trigger.withArgs('activate', index).calledOnce).to.be.equal(true);
   });
@@ -88,10 +88,10 @@ describe('TriangleMenu', function() {
     ];
 
     // when
-    var result = cut._createPolygonPoints(index);
+    var result = cut._createPolygonPoints($el, index);
 
     expect(result).to.be.eql(expectedPoints);
-    expect(cut._getMenuItem.withArgs(index).calledOnce).to.be.equal(true);
+    expect(cut._getMenuItem.withArgs($el, index).calledOnce).to.be.equal(true);
   });
 
   it('should build points for clip-path-polygon', function() {
@@ -138,16 +138,15 @@ describe('TriangleMenu', function() {
     };
 
     // when
-    var result = cut._getCenterOfMenuItem($element);
+    var result = cut._getCenterOfMenuItem($el, $element);
 
     // then
     expect(result).to.be.equal(230);
   });
 
   var createMenuStructure = function() {
-    var menuSelector = cut.triangleMenuSelector.substr(1);
     var menuItemSelector = cut.menuItemSelector.substr(1);
-    var $menu = $('<div>').addClass(menuSelector);
+    var $menu = $('<div>');
     var $menuItem1 = $('<div>').addClass(menuItemSelector);
     var $menuItem2 = $('<div>').addClass(menuItemSelector).append($('<div>').addClass('test'));
     var $menuItem3 = $('<div>').addClass(menuItemSelector).addClass('active');
@@ -162,10 +161,10 @@ describe('TriangleMenu', function() {
     var $menu = createMenuStructure();
 
     var $toBeColored = $menu.find('>:nth-child(2)');
-    var expected = '<div class="triangle-menu"><div class="menu-item"></div><div class="menu-item active"><div class="test"></div></div><div class="menu-item"></div><div class="menu-item"></div></div>';
+    var expected = '<div><div class="menu-item"></div><div class="menu-item active"><div class="test"></div></div><div class="menu-item"></div><div class="menu-item"></div></div>';
 
     // when
-    cut._colorIcons($toBeColored);
+    cut._colorIcons($menu, $toBeColored);
 
     // then
     expect($menu.prop('outerHTML')).to.be.equal(expected);
