@@ -3,6 +3,8 @@ triangle-menu
 
 This is a jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path.
 
+[Examples](http://andrusieczko.github.io/triangle-menu/examples.html)
+
 <img src="http://www.andrusieczko.pl/others/files_to_share/triangleMenu2.png" width="300">
 <img src="http://www.andrusieczko.pl/others/files_to_share/triangleMenu.png" width="300">
 <img src="http://www.andrusieczko.pl/others/files_to_share/triangleMenu3.png" width="300">
@@ -59,7 +61,7 @@ You have to have a certain HTML structure to use it. The element you call the fu
 ---
 
 ## Example use:
-You can find the working examples [here](http://www.andrusieczko.pl/others/github/triangleMenu/examples.html).
+You can find the working examples [here](http://andrusieczko.github.io/triangle-menu/examples.html).
 ```html
 <table class="triangle-menu">
     <tbody>

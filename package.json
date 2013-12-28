@@ -4,7 +4,7 @@
   "name": "triangle-menu",
   "url": "https://github.com/andrusieczko/triangle-menu",
   "description": "jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/andrusieczko/triangle-menu.git"
