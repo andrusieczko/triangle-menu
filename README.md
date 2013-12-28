@@ -1,4 +1,4 @@
-triangle-menu
+triangle-menu [![Build Status](https://travis-ci.org/andrusieczko/triangle-menu.png?branch=master)](https://travis-ci.org/andrusieczko/triangle-menu)
 =============
 
 This is a jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path.
