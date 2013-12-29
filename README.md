@@ -1,4 +1,6 @@
-triangle-menu [![Build Status](https://travis-ci.org/andrusieczko/triangle-menu.png?branch=master)](https://travis-ci.org/andrusieczko/triangle-menu)
+triangle-menu
+[![Build Status](https://travis-ci.org/andrusieczko/triangle-menu.png?branch=master)](https://travis-ci.org/andrusieczko/triangle-menu)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 =============
 
 This is a jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path.
@@ -55,7 +57,7 @@ You have to have a certain HTML structure to use it. All the items in the menu h
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
 | `triangleHeight` | number | 20 | Height of the clipped triangle in px |
-| `triangleWidth` | number | 25 | Width of the clipped triangle in px |
+| `triangleWidth` | number | 50 | Width of the clipped triangle in px |
 | `menuItemSelector` | string | .menu-item | Selector of the submenu item |
 | `activate(event, index)` | function | *nothing* | The callback function that is called when the mouse hovers over a `.menu-item` element; `index` argument is the index of `.menu-item` element and it's numerated from 1 |
 
