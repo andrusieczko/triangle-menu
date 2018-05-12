@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     },
     shell: {
       jsUnitTests: {
-        command: 'mocha test/**.js',
+        command: 'node node_modules/mocha/mocha.js test/**.js',
         options: {
           stdout: true,
           failOnError: true

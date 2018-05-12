@@ -1,14 +1,16 @@
 /*!
- * jQuery triangle-menu Plugin v0.1.0
- * Released: 2013-09-08
+ * jQuery triangle-menu Plugin v0.1.3
+ * Released: 2018-05-12
  * jQuery plugin that creates a dynamic menu with a triangle pointer based on clip-path
- * https://github.com/andrusieczko/jquery-triangle-menu
+ * https://github.com/andrusieczko/triangle-menu
  * 
- * Copyright 2013 Karol Andrusieczko
+ * Copyright 2018 Karol Andrusieczko
  * Released under MIT license
  */
 
-var jQuery = jQuery || (require && require('jquery'));
+var globalVariable = window || root;
+var jQuery = jQuery || globalVariable.jQuery || require("jquery");
+
 (function($) {
 
   var TriangleMenu = function(jQuery, $el, options) {
